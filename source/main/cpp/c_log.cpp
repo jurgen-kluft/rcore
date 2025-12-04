@@ -79,11 +79,22 @@ namespace ncore
             flush();
         }
 
+        void print(const char* msg)
+        {
+            if (!is_level_active(nlevel::Info))
+                return;
+            if (gLogLineStr.m_str == 0)
+                str_append(gLogLineStr, "[INFO] ");
+            str_append(gLogLineStr, msg);
+        }
+
         void println(const char* msg)
         {
             if (!is_level_active(nlevel::Info))
                 return;
+            str_append(gLogLineStr, "[INFO] ");
             str_append(gLogLineStr, msg);
+            str_append(gLogLineStr, '\n');
             flush();
         }
 
@@ -103,7 +114,6 @@ namespace ncore
                     str_append(gLogLineStr, ":");
                 to_str(gLogLineStr, (byte)mac[i], 2, 16);
             }
-            flush();
         }
 
         void printf_(const char* format, va_t* args, i32 argc)
@@ -112,7 +122,6 @@ namespace ncore
             const size_t n   = (size_t)sizeof(gLogLineBuffer) - gLogLineStr.m_str;
             const s32    len = ncore::snprintf_(str, n, format, args, argc);
             gLogLineStr.m_end += len;
-            flush();
         }
 
     }  // namespace nlog
@@ -126,6 +135,7 @@ namespace ncore
     namespace nlog
     {
         void set_level(nlevel::value_t level) { CC_UNUSED(level); }
+        void print(const char* msg) { CC_UNUSED(msg); }
         void println(const char* msg) { CC_UNUSED(msg); }
         void println() {}
 

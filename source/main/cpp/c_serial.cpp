@@ -56,8 +56,24 @@ namespace ncore
 #    else
         void begin(nbaud::Enum baud) { CC_UNUSED(baud); }
         void print(const char* val) { CC_UNUSED(val); }
-        void print(const IPAddress_t& address) { CC_UNUSED(address); }
-        void print(const MACAddress_t& mac) { CC_UNUSED(mac); }
+        void print(u8 a, u8 b, u8 c, u8 d, char s)
+        {
+            CC_UNUSED(a);
+            CC_UNUSED(b);
+            CC_UNUSED(c);
+            CC_UNUSED(d);
+            CC_UNUSED(s);
+        }
+        void print(u8 a, u8 b, u8 c, u8 d, u8 e, u8 f, char s)
+        {
+            CC_UNUSED(a);
+            CC_UNUSED(b);
+            CC_UNUSED(c);
+            CC_UNUSED(d);
+            CC_UNUSED(e);
+            CC_UNUSED(f);
+            CC_UNUSED(s);
+        }
         void println(const char* val) { CC_UNUSED(val); }
 #    endif
     }  // namespace nserial
@@ -230,7 +246,7 @@ namespace ncore
     {
         void begin(nbaud::Enum baud) { CC_UNUSED(baud); }
         void print(const char* val) { CC_UNUSED(val); }
-        void print(u8 a, u8 b, u8 c, u8 d, char separator )
+        void print(u8 a, u8 b, u8 c, u8 d, char separator)
         {
             CC_UNUSED(a);
             CC_UNUSED(b);

@@ -27,8 +27,28 @@ namespace ncore
 
         void set_level(nlevel::value_t level);
 
+        void print(const char* msg);
         void println(const char* msg);
         void println();
+
+        template <typename... Args>
+        inline void printv(const char* format, Args&&... _args)
+        {
+            const char* argv[] = {_args...};
+            const i32  argc   = sizeof(argv) / sizeof(argv[0]);
+            for (i32 i = 0; i < argc; ++i)
+                print(argv[i]);
+        }
+
+        template <typename... Args>
+        inline void printvln(const char* format, Args&&... _args)
+        {
+            const char* argv[] = {_args...};
+            const i32  argc   = sizeof(argv) / sizeof(argv[0]);
+            for (i32 i = 0; i < argc; ++i)
+                print(argv[i]);
+            println();
+        }
 
         void printf_(const char* format, va_t* args, i32 argc);
         template <typename... Args>

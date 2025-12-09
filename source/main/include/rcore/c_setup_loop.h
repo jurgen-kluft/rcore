@@ -1,7 +1,7 @@
-#ifndef __rCORE_SETUP_LOOP_H__
-#define __rCORE_SETUP_LOOP_H__
+#ifndef __ARDUINO_CORE_SETUP_LOOP_H__
+#define __ARDUINO_CORE_SETUP_LOOP_H__
 
 extern void setup();    
 extern void loop();
 
-#endif  // __rCORE_DIO_H__
+#endif  // __ARDUINO_CORE_DIO_H__

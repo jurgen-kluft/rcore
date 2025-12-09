@@ -37,8 +37,8 @@ void setup()
     if (psramInit())
     {
         ncore::gState.flags |= ncore::state_t::FLAG_PSRAM;
-        const ncore::u32 psram_size       = ESP.getPsramSize();
-        const ncore::u32 free_psram       = ESP.getFreePsram();
+        const ncore::u32 psram_size = ESP.getPsramSize();
+        const ncore::u32 free_psram = ESP.getFreePsram();
         ncore::nlog::printf("PSRAM Size: %u Kbytes with %u Kbytes free.\n", ncore::va_t(psram_size >> 10), ncore::va_t(free_psram >> 10));
     }
     else
@@ -63,3 +63,4 @@ void loop()
 }
 
 #endif
+

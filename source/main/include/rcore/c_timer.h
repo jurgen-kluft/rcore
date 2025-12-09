@@ -1,5 +1,5 @@
-#ifndef __rCORE_TIMER_H__
-#define __rCORE_TIMER_H__
+#ifndef __ARDUINO_CORE_TIMER_H__
+#define __ARDUINO_CORE_TIMER_H__
 #include "rcore/c_target.h"
 #ifdef USE_PRAGMA_ONCE
 #    pragma once
@@ -19,4 +19,4 @@ namespace ncore
     }  // namespace ntimer
 }  // namespace ncore
 
-#endif  // __rCORE_TIMER_H__
+#endif  // __ARDUINO_CORE_TIMER_H__

@@ -1,5 +1,5 @@
-#ifndef __rCORE_NETWORK_H__
-#define __rCORE_NETWORK_H__
+#ifndef __ARDUINO_CORE_NETWORK_H__
+#define __ARDUINO_CORE_NETWORK_H__
 #include "rcore/c_target.h"
 #ifdef USE_PRAGMA_ONCE
 #    pragma once
@@ -21,4 +21,4 @@ namespace ncore
 
 }  // namespace ncore
 
-#endif  // __rCORE_NETWORK_H__
+#endif  // __ARDUINO_CORE_NETWORK_H__

@@ -1,5 +1,5 @@
-#ifndef __rCORE_PACKET_H__
-#define __rCORE_PACKET_H__
+#ifndef __ARDUINO_CORE_PACKET_H__
+#define __ARDUINO_CORE_PACKET_H__
 #include "rcore/c_target.h"
 #ifdef USE_PRAGMA_ONCE
 #    pragma once
@@ -62,21 +62,32 @@ namespace ncore
                 ID_VIBRATION   = 17,  // Vibration
                 ID_STATE       = 18,  // State
                 ID_BATTERY     = 19,  // Battery
-                ID_SWITCH      = 20,  // On/Off, Open/Close
-                ID_PRESENCE1   = 21,  // Presence1
-                ID_PRESENCE2   = 22,  // Presence2
-                ID_PRESENCE3   = 23,  // Presence3
-                ID_DISTANCE1   = 24,  // Distance1
-                ID_DISTANCE2   = 25,  // Distance2
-                ID_DISTANCE3   = 26,  // Distance3
-                ID_PX          = 27,  // X
-                ID_PY          = 28,  // Y
-                ID_PZ          = 29,  // Z
-                ID_RSSI        = 30,  // RSSI
-                ID_PERF1       = 31,  // Performance Metric 1
-                ID_PERF2       = 32,  // Performance Metric 2
-                ID_PERF3       = 33,  // Performance Metric 3
-                ID_SENSORCOUNT = 34,  // The maximum number of sensor types (highest index + 1)
+                ID_SWITCH      = 21,  // On/Off, Open/Close
+                ID_SWITCH2     = 22,  // On/Off, Open/Close
+                ID_SWITCH3     = 23,  // On/Off, Open/Close
+                ID_SWITCH4     = 24,  // On/Off, Open/Close
+                ID_SWITCH5     = 25,  // On/Off, Open/Close
+                ID_SWITCH6     = 26,  // On/Off, Open/Close
+                ID_SWITCH7     = 27,  // On/Off, Open/Close
+                ID_SWITCH8     = 28,  // On/Off, Open/Close
+                ID_PRESENCE1   = 31,  // Presence1
+                ID_PRESENCE2   = 32,  // Presence2
+                ID_PRESENCE3   = 33,  // Presence3
+                ID_DISTANCE1   = 34,  // Distance1
+                ID_DISTANCE2   = 35,  // Distance2
+                ID_DISTANCE3   = 36,  // Distance3
+                ID_PX          = 37,  // X
+                ID_PY          = 38,  // Y
+                ID_PZ          = 39,  // Z
+                ID_RSSI        = 40,  // RSSI
+                ID_PERF1       = 41,  // Performance Metric 1
+                ID_PERF2       = 42,  // Performance Metric 2
+                ID_PERF3       = 43,  // Performance Metric 3
+                ID_VOLTAGE     = 45,  // Voltage
+                ID_CURRENT     = 46,  // Current
+                ID_POWER       = 47,  // Power
+                ID_ENERGY      = 48,  // Energy
+                ID_SENSORCOUNT,       // The maximum number of sensor types (highest index + 1)
             };
         };  // namespace nsensorid
 
@@ -131,4 +142,4 @@ namespace ncore
     }  // namespace npacket
 }  // namespace ncore
 
-#endif  // __rCORE_PACKET_H__
+#endif  // __ARDUINO_CORE_PACKET_H__

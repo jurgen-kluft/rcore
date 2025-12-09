@@ -1,5 +1,5 @@
-#ifndef __rCORE_MALLOC_H__
-#define __rCORE_MALLOC_H__
+#ifndef __ARDUINO_CORE_MALLOC_H__
+#define __ARDUINO_CORE_MALLOC_H__
 #include "rcore/c_target.h"
 #ifdef USE_PRAGMA_ONCE
 #    pragma once
@@ -47,4 +47,4 @@ namespace ncore
     }  // namespace nsystem
 }  // namespace ncore
 
-#endif  // __rCORE_ALLOCATOR_H__
+#endif  // __ARDUINO_CORE_ALLOCATOR_H__

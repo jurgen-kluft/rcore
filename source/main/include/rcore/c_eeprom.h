@@ -1,5 +1,5 @@
-#ifndef __rCORE_EEPROM_H__
-#define __rCORE_EEPROM_H__
+#ifndef __ARDUINO_CORE_EEPROM_H__
+#define __ARDUINO_CORE_EEPROM_H__
 #include "rcore/c_target.h"
 #ifdef USE_PRAGMA_ONCE
 #    pragma once
@@ -15,4 +15,4 @@ namespace ncore
     }  // namespace neeprom
 }  // namespace ncore
 
-#endif  // __rCORE_EEPROM_H__
+#endif  // __ARDUINO_CORE_EEPROM_H__

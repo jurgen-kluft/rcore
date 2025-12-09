@@ -1,5 +1,5 @@
-#ifndef __rCORE_APP_H__
-#define __rCORE_APP_H__
+#ifndef __ARDUINO_CORE_APP_H__
+#define __ARDUINO_CORE_APP_H__
 #include "rcore/c_target.h"
 #ifdef USE_PRAGMA_ONCE
 #    pragma once
@@ -17,4 +17,4 @@ namespace ncore
     }  // namespace napp
 }  // namespace ncore
 
-#endif  // __rCORE_ALLOCATOR_H__
+#endif  // __ARDUINO_CORE_ALLOCATOR_H__

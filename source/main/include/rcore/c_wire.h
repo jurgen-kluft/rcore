@@ -1,5 +1,5 @@
-#ifndef __rCORE_WIRE_H__
-#define __rCORE_WIRE_H__
+#ifndef __ARDUINO_CORE_WIRE_H__
+#define __ARDUINO_CORE_WIRE_H__
 #include "rcore/c_target.h"
 #ifdef USE_PRAGMA_ONCE
 #    pragma once
@@ -14,4 +14,4 @@ namespace ncore
 
 }  // namespace ncore
 
-#endif  // __rCORE_WIRE_H__
+#endif  // __ARDUINO_CORE_WIRE_H__

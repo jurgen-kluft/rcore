@@ -16,18 +16,20 @@ UNITTEST_SUITE_BEGIN(packet)
 
         UNITTEST_TEST(test)
         {
-            sensorpacket_t packet;
+            packet_t packet;
             packet.begin();
 
             // Write sensor values
-            packet.write(nsensorid::ID_TEMPERATURE, 25);
-            packet.write(nsensorid::ID_HUMIDITY, 60);
+            npacket::sensor_block_t sensors;
+            sensors.begin(&packet);
+            sensors.write(&packet,  npacket::sensor_block_t::ID_TEMPERATURE, 25);
+            sensors.write(&packet, npacket::sensor_block_t::ID_HUMIDITY, 60);
 
             // Finalize the packet
-            CHECK_EQUAL(2, packet.count());
+            CHECK_EQUAL(2, packet.finalize());
 
             // Check the size of the packet
-            CHECK_EQUAL((packet_t::HeaderSize + 2 + 2), packet.Size);
+            CHECK_EQUAL((packet_t::HeaderSize + 3 + 3), packet.Size);
         }
     }
 }

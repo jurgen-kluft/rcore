@@ -29,52 +29,59 @@ namespace ncore
                     break;
                 ntimer::delay(10);
             }
+            enabled = true;
         }
 
-        // Print prints data to the serial port as human-readable ASCII text.
-        // @see: https://www.arduino.cc/reference/en/language/functions/communication/serial/print/
-        void print(const char* val) { Serial.print(val); }
-
-        void print(u8 a, u8 b, u8 c, u8 d, char s)
+        namespace __internal__
         {
-            char strBuffer[32];
-            snprintf(strBuffer, sizeof(strBuffer), "%u%c%u%c%u%c%u", va_t(a), va_t(s), va_t(b), va_t(s), va_t(c), va_t(s), va_t(d));
-            Serial.print(strBuffer);
-        }
+            // Print prints data to the serial port as human-readable ASCII text.
+            // @see: https://www.arduino.cc/reference/en/language/functions/communication/serial/print/
+            void print(const char* val) { Serial.print(val); }
 
-        void print(u8 a, u8 b, u8 c, u8 d, u8 e, u8 f, char s)
-        {
-            char strBuffer[32];
-            snprintf(strBuffer, sizeof(strBuffer), "%02X%c%02X%c%02X%c%02X%c%02X%c%02X", va_t(a), va_t(s), va_t(b), va_t(s), va_t(c), va_t(s), va_t(d), va_t(s), va_t(e), va_t(s), va_t(f));
-            Serial.print(strBuffer);
-        }
+            void print(u8 a, u8 b, u8 c, u8 d, char s)
+            {
+                char strBuffer[32];
+                snprintf(strBuffer, sizeof(strBuffer), "%u%c%u%c%u%c%u", va_t(a), va_t(s), va_t(b), va_t(s), va_t(c), va_t(s), va_t(d));
+                Serial.print(strBuffer);
+            }
 
-        // Println prints data to the serial port as human-readable ASCII text followed by a
-        // carriage return character (ASCII 13, or '\r') and a newline character (ASCII 10, or '\n').
-        // @see: https://www.arduino.cc/reference/en/language/functions/communication/serial/println/
-        void println(const char* val) { Serial.println(val); }
+            void print(u8 a, u8 b, u8 c, u8 d, u8 e, u8 f, char s)
+            {
+                char strBuffer[32];
+                snprintf(strBuffer, sizeof(strBuffer), "%02X%c%02X%c%02X%c%02X%c%02X%c%02X", va_t(a), va_t(s), va_t(b), va_t(s), va_t(c), va_t(s), va_t(d), va_t(s), va_t(e), va_t(s), va_t(f));
+                Serial.print(strBuffer);
+            }
+
+            // Println prints data to the serial port as human-readable ASCII text followed by a
+            // carriage return character (ASCII 13, or '\r') and a newline character (ASCII 10, or '\n').
+            // @see: https://www.arduino.cc/reference/en/language/functions/communication/serial/println/
+            void println(const char* val) { Serial.println(val); }
+        }  // namespace __internal__
 #    else
         void begin(nbaud::Enum baud) { CC_UNUSED(baud); }
-        void print(const char* val) { CC_UNUSED(val); }
-        void print(u8 a, u8 b, u8 c, u8 d, char s)
+        namespace __internal__
         {
-            CC_UNUSED(a);
-            CC_UNUSED(b);
-            CC_UNUSED(c);
-            CC_UNUSED(d);
-            CC_UNUSED(s);
-        }
-        void print(u8 a, u8 b, u8 c, u8 d, u8 e, u8 f, char s)
-        {
-            CC_UNUSED(a);
-            CC_UNUSED(b);
-            CC_UNUSED(c);
-            CC_UNUSED(d);
-            CC_UNUSED(e);
-            CC_UNUSED(f);
-            CC_UNUSED(s);
-        }
-        void println(const char* val) { CC_UNUSED(val); }
+            void print(const char* val) { CC_UNUSED(val); }
+            void print(u8 a, u8 b, u8 c, u8 d, char s)
+            {
+                CC_UNUSED(a);
+                CC_UNUSED(b);
+                CC_UNUSED(c);
+                CC_UNUSED(d);
+                CC_UNUSED(s);
+            }
+            void print(u8 a, u8 b, u8 c, u8 d, u8 e, u8 f, char s)
+            {
+                CC_UNUSED(a);
+                CC_UNUSED(b);
+                CC_UNUSED(c);
+                CC_UNUSED(d);
+                CC_UNUSED(e);
+                CC_UNUSED(f);
+                CC_UNUSED(s);
+            }
+            void println(const char* val) { CC_UNUSED(val); }
+        }  // namespace __internal__
 #    endif
     }  // namespace nserial
 

@@ -10,7 +10,7 @@
 namespace ncore
 {
     class reader_t;
-    
+
     namespace nbaud
     {
         enum Enum
@@ -47,19 +47,55 @@ namespace ncore
         const serial_t SERIAL1 = 1;
         const serial_t SERIAL2 = 2;
         const serial_t SERIAL3 = 3;
-    }
+    }  // namespace nserialx
 
     namespace nserial
     {
+        static bool enabled = false;
+
         void begin(nbaud::Enum baud = nbaud::Rate115200);
-        void print(const char* val);
-        void print(u8 a, u8 b, u8 c, u8 d, char separator = '.');
-        void print(u8 a, u8 b, u8 c, u8 d, u8 e, u8 f, char separator = ':');
-        void println(const char* val);
+
+        namespace __internal__
+        {
+            void print(const char* val);
+            void print(u8 a, u8 b, u8 c, u8 d, char separator = '.');
+            void print(u8 a, u8 b, u8 c, u8 d, u8 e, u8 f, char separator = ':');
+            void println(const char* val);
+        }  // namespace __internal__
+
+        inline void print(const char* val)
+        {
+            if (!enabled)
+                return;
+            __internal__::print(val);
+        }
+
+        inline void print(u8 a, u8 b, u8 c, u8 d, char separator = '.')
+        {
+            if (!enabled)
+                return;
+            __internal__::print(a, b, c, d, separator);
+        }
+
+        inline void print(u8 a, u8 b, u8 c, u8 d, u8 e, u8 f, char separator = ':')
+        {
+            if (!enabled)
+                return;
+            __internal__::print(a, b, c, d, e, f, separator);
+        }
+
+        inline void println(const char* val)
+        {
+            if (!enabled)
+                return;
+            __internal__::println(val);
+        }
 
         template <typename... Args>
         void printf(const char* format, Args... args)
         {
+            if (!enabled)
+                return;
             char       buffer[256];
             const va_t argv[] = {args...};
             const s32  argc   = sizeof(argv) / sizeof(argv[0]);
@@ -70,11 +106,14 @@ namespace ncore
         template <typename... Args>
         void printfln(const char* format, Args... args)
         {
-            char       buffer[256];
-            const va_t argv[] = {args...};
-            const s32  argc   = sizeof(argv) / sizeof(argv[0]);
-            snprintf_(buffer, sizeof(buffer) - 1, format, argv, argc);
-            println(buffer);
+            if (enabled)
+            {
+                char       buffer[256];
+                const va_t argv[] = {args...};
+                const s32  argc   = sizeof(argv) / sizeof(argv[0]);
+                snprintf_(buffer, sizeof(buffer) - 1, format, argv, argc);
+                println(buffer);
+            }
         }
     }  // namespace nserial
 

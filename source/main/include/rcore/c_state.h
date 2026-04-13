@@ -35,7 +35,7 @@ namespace ncore
             Flags         = 0;
             ServerIP      = 0;
             TimeMs        = 0;
-            Wifi          = nullptr;
+            WiFi          = nullptr;
             Tcp           = nullptr;
             Udp           = nullptr;
             Node          = nullptr;
@@ -50,7 +50,7 @@ namespace ncore
         u8            Flags;
         u32           ServerIP;
         u64           TimeMs;
-        state_wifi_t* Wifi;
+        state_wifi_t* WiFi;
         state_tcp_t*  Tcp;
         state_udp_t*  Udp;
         state_node_t* Node;

@@ -6,6 +6,7 @@
 #include "rcore/c_task.h"
 #include "rcore/c_timer.h"
 #include "rcore/c_app.h"
+#include "rcore/c_deepsleep.h"
 
 #ifdef TARGET_ARDUINO
 
@@ -19,6 +20,8 @@ namespace ncore
 void setup()
 {
     ncore::gState.reset();
+    ncore::gState.WakeUpReason = ncore::nsystem::ndeepsleep::nwakeup::reason();
+
     ncore::napp::presetup(&ncore::gState);
 
     ncore::gState.WiFiSSID      = ncore::WIFI_SSID();
@@ -36,7 +39,7 @@ void setup()
 #    ifndef TARGET_ESP8266
     if (psramInit())
     {
-        ncore::gState.flags |= ncore::state_t::FLAG_PSRAM;
+        ncore::gState.Flags |= ncore::state_t::FLAG_PSRAM;
         const ncore::u32 psram_size = ESP.getPsramSize();
         const ncore::u32 free_psram = ESP.getFreePsram();
         ncore::nlog::printf("PSRAM Size: %u Kbytes with %u Kbytes free.\n", ncore::va_t(psram_size >> 10), ncore::va_t(free_psram >> 10));
@@ -50,7 +53,7 @@ void setup()
     const ncore::u32 free_memory = ESP.getFreeHeap();
     ncore::nlog::printf("Free heap memory: %u Kbytes\n", ncore::va_t(free_memory >> 10));
 
-    ncore::gState.time_ms = ncore::ntimer::millis();
+    ncore::gState.TimeMs = ncore::ntimer::millis();
     ncore::napp::setup(&ncore::gState);
 
     ncore::nlog::println("Setup done...");
@@ -58,7 +61,7 @@ void setup()
 
 void loop()
 {
-    ncore::gState.time_ms = ncore::ntimer::millis();
+    ncore::gState.TimeMs = ncore::ntimer::millis();
     ncore::napp::tick(&ncore::gState);
 }
 

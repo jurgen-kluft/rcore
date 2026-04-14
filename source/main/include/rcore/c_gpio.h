@@ -73,6 +73,9 @@ namespace ncore
             void setup();
             bool is_high();
 
+            void interruptOnRising(void (*isr)());
+            void interruptOnFalling(void (*isr)());
+
         private:
             u16 mPin;
         };

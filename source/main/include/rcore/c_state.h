@@ -29,10 +29,9 @@ namespace ncore
             WiFiPassword = nullptr;
             for (u32 i = 0; i < 6; ++i)
                 MACAddress[i] = 0;
+            Flags         = 0;
             ServerTcpPort = 0;
             ServerUdpPort = 0;
-            WakeUpReason  = 0;
-            Flags         = 0;
             ServerIP      = 0;
             TimeMs        = 0;
             WiFi          = nullptr;
@@ -44,10 +43,9 @@ namespace ncore
         const char*   WiFiSSID;
         const char*   WiFiPassword;
         u8            MACAddress[6];
+        u16           Flags;
         u16           ServerTcpPort;
         u16           ServerUdpPort;
-        u8            WakeUpReason;
-        u8            Flags;
         u32           ServerIP;
         u64           TimeMs;
         state_wifi_t* WiFi;

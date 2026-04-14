@@ -20,15 +20,13 @@ namespace ncore
 void setup()
 {
     ncore::gState.reset();
-    ncore::gState.WakeUpReason = ncore::nsystem::ndeepsleep::nwakeup::reason();
-
-    ncore::napp::presetup(&ncore::gState);
 
     ncore::gState.WiFiSSID      = ncore::WIFI_SSID();
     ncore::gState.WiFiPassword  = ncore::WIFI_PASSWORD();
     ncore::gState.ServerIP      = ncore::SERVER_IP();
     ncore::gState.ServerTcpPort = ncore::SERVER_TCPPORT();
     ncore::gState.ServerUdpPort = ncore::SERVER_UDPPORT();
+    ncore::napp::wakeup(&ncore::gState, ncore::nwakeup::reason());
 
 #    ifdef TARGET_ESP8266
     ncore::nserial::begin(ncore::nbaud::Rate74880);  // Initialize serial communication at 74880 baud
@@ -66,4 +64,3 @@ void loop()
 }
 
 #endif
-

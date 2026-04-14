@@ -41,6 +41,20 @@ namespace ncore
             return ::digitalRead(mPin & 0x007F) == HIGH;
         }
 
+        void input_pin_t::interruptOnRising(void (*isr)())
+        {
+            if ((mPin & 0x8000) == 0)
+                setup();
+            attachInterrupt(digitalPinToInterrupt(mPin & 0x007F), isr, RISING);
+        }
+
+        void input_pin_t::interruptOnFalling(void (*isr)())
+        {
+            if ((mPin & 0x8000) == 0)
+                setup();
+            attachInterrupt(digitalPinToInterrupt(mPin & 0x007F), isr, FALLING);
+        }
+
         input_debounce_pin_t::input_debounce_pin_t(s8 pin, u16 debounce_low_high_ms, u16 debounce_high_low_ms)
         {
             mPin                                       = (pin & 0x00FF);
@@ -110,6 +124,15 @@ namespace ncore
         {
             setup();
             return true;
+        }
+
+        void input_pin_t::interruptOnRising(void (*isr)())
+        {
+            // Not implemented for non-Arduino targets
+        }
+        void input_pin_t::interruptOnFalling(void (*isr)())
+        {
+            // Not implemented for non-Arduino targets
         }
 
     }  // namespace ngpio

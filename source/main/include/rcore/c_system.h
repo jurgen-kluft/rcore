@@ -13,6 +13,9 @@ namespace ncore
     {
         void get_unique_id(str_t& str);  // get a unique ID for this device (e.g. chip ID or MAC address)
 
+        void* malloc(u32 size);  // allocate memory from the heap
+        void  free(void* ptr);   // free memory allocated from the heap
+
         bool  init_psram();              // initialize PSRAM (if available)
         bool  has_psram();               // check if PSRAM is available
         s32   total_psram();             // get total PSRAM size in bytes

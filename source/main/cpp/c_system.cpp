@@ -37,6 +37,26 @@ namespace ncore
             to_str(str, (u32)(chipid & 0xFFFF), 16);
         }
 
+        void* malloc(u32 size)
+        {
+#ifdef TARGET_ARDUINO
+            return ::malloc(size);
+#else
+            // standard C++ malloc
+            return ::malloc(size);
+#endif
+        }
+
+        void free(void* ptr)
+        {
+#ifdef TARGET_ARDUINO
+            ::free(ptr);
+#else
+            // standard C++ free
+            ::free(ptr);
+#endif
+        }
+
         bool init_psram()
         {
 #ifdef TARGET_ESP32

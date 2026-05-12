@@ -1,5 +1,5 @@
 #include "rcore/c_target.h"
-#include "rcore/c_malloc.h"
+#include "rcore/c_system.h"
 #include "rcore/c_eeprom.h"
 #include "rcore/c_log.h"
 #include "rcore/c_serial.h"

@@ -1,6 +1,5 @@
 #include "rcore/c_str.h"
 #include "rcore/c_system.h"
-#include "rcore/c_malloc.h"
 #include "ccore/c_memory.h"
 
 #ifdef TARGET_ARDUINO

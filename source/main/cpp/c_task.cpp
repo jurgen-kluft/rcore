@@ -1,7 +1,6 @@
 #include "rcore/c_target.h"
-#include "rcore/c_malloc.h"
-#include "rcore/c_serial.h"
 #include "rcore/c_system.h"
+#include "rcore/c_serial.h"
 #include "rcore/c_task.h"
 #include "rcore/c_timer.h"
 

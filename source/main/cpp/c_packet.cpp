@@ -60,7 +60,7 @@ namespace ncore
         {
             if (pkt.Size + 2 + 6 + 2 + data_len > pkt.Capacity)
                 return;  // Not enough space in packet
-            packet_write_u16(pkt, id);
+            packet_write_u16(pkt, ID_SENSOR_PACKET | id);
             packet_write_bytes(pkt, mac, 6);
             packet_write_value(pkt, data, data_len);
         }
@@ -69,7 +69,7 @@ namespace ncore
         {
             if (pkt.Size + 2 + 6 + 2 + sizeof(image_descr_t) + data_len > pkt.Capacity)
                 return;  // Not enough space in packet
-            packet_write_u16(pkt, id);
+            packet_write_u16(pkt, ID_SENSOR_PACKET | id);
             packet_write_bytes(pkt, mac, 6);
             packet_write_u16(pkt, sizeof(image_descr_t) + data_len);
             packet_write_bytes(pkt, (u8 const*)&descr, sizeof(image_descr_t));

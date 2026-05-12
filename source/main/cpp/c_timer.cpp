@@ -27,6 +27,16 @@ namespace ncore
         {
             ::delayMicroseconds(us);
         }
+
+        void tick(periodic_task_t* task)
+        {
+            u32 now = millis();
+            if ((now - task->last_run_ms) >= task->interval_ms)
+            {
+                task->last_run_ms = now;
+                task->task_fn();
+            }
+        }
     }  // namespace ntimer
 }  // namespace ncore
 

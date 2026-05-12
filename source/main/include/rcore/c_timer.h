@@ -16,6 +16,16 @@ namespace ncore
         // @see: https://docs.arduino.cc/language-reference/en/functions/time/delay/
         void delay(u32 ms);
         void delay_us(u32 us);
+
+        struct periodic_task_t
+        {
+            u32     interval_ms;
+            u32     last_run_ms;
+            void (*task_fn)();
+        };
+
+        void tick(periodic_task_t* task);
+
     }  // namespace ntimer
 }  // namespace ncore
 

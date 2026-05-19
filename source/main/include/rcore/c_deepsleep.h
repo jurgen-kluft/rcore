@@ -1,5 +1,5 @@
-#ifndef __ARDUINO_CORE_SYSTEM_DEEPSLEEP_H__
-#define __ARDUINO_CORE_SYSTEM_DEEPSLEEP_H__
+#ifndef __RCORE_SYSTEM_DEEPSLEEP_H__
+#define __RCORE_SYSTEM_DEEPSLEEP_H__
 #include "rcore/c_target.h"
 #ifdef USE_PRAGMA_ONCE
 #    pragma once
@@ -32,4 +32,4 @@ namespace ncore
     }  // namespace nwakeup
 }  // namespace ncore
 
-#endif  // __ARDUINO_CORE_SYSTEM_DEEPSLEEP_H__
+#endif  // __RCORE_SYSTEM_DEEPSLEEP_H__

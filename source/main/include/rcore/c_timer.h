@@ -23,6 +23,12 @@ namespace ncore
             u32     last_run_ms;
             void (*task_fn)();
         };
+        static inline void init_periodic_task(periodic_task_t* task, u32 interval_ms, void (*task_fn)())
+        {
+            task->interval_ms  = interval_ms;
+            task->last_run_ms = 0;
+            task->task_fn     = task_fn;
+        }
 
         void tick(periodic_task_t* task);
 

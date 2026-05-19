@@ -10,10 +10,11 @@ namespace ncore
     namespace nlog
     {
         // Note disable all logging in final builds
-        char  gLogLineBuffer[256];
-        str_t gLogLineStr = {gLogLineBuffer, gLogLineBuffer, 0, 0, (s16)sizeof(gLogLineBuffer) - 1};
+        static char  gLogLineBuffer[512];
+        static str_t gLogLineStr = {gLogLineBuffer, gLogLineBuffer, 0, 0, (s16)sizeof(gLogLineBuffer) - 1};
 
-        nlevel::value_t    gLogLevel = nlevel::All;
+        static nlevel::value_t gLogLevel = nlevel::All;
+
         void               set_level(nlevel::value_t level) { gLogLevel = level; }
         static inline bool is_level_active(nlevel::value_t level) { return (gLogLevel & level) != 0; }
 

@@ -19,18 +19,21 @@ namespace ncore
 
         struct periodic_task_t
         {
-            u32     interval_ms;
-            u32     last_run_ms;
-            void (*task_fn)();
+            u64   interval_ms;
+            u64   last_run_ms;
+            void* m_user;
+            void (*task_fn)(void* user);
         };
-        static inline void init_periodic_task(periodic_task_t* task, u32 interval_ms, void (*task_fn)())
+        static inline void mark_periodic_task(periodic_task_t* task, u64 now_ms) { task->last_run_ms = now_ms; }
+        static inline void init_periodic_task(periodic_task_t* task, u64 interval_ms, void* user, void (*task_fn)(void* user))
         {
-            task->interval_ms  = interval_ms;
+            task->interval_ms = interval_ms;
             task->last_run_ms = 0;
+            task->m_user      = user;
             task->task_fn     = task_fn;
         }
 
-        void tick(periodic_task_t* task);
+        void tick_periodic_task(periodic_task_t* task, u32 now_ms);
 
     }  // namespace ntimer
 }  // namespace ncore

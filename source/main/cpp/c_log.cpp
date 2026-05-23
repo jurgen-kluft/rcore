@@ -107,6 +107,16 @@ namespace ncore
             flush();
         }
 
+        void print_ip(const u8* ip)
+        {
+            for (i32 i = 0; i < 4; ++i)
+            {
+                if (i > 0)
+                    str_append(gLogLineStr, ".");
+                to_str(gLogLineStr, (byte)ip[i], 10);
+            }
+        }
+
         void print_mac(const u8* mac)
         {
             for (i32 i = 0; i < 6; ++i)

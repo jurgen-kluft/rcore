@@ -75,6 +75,14 @@ namespace ncore
         void trace(const char* msg);
         void flush();
 
+        // IP
+        void print_ip(const u8* ip);
+        inline void println_ip(const u8* ip)
+        {
+            print_ip(ip);
+            println();
+        }
+
         // Mac
         void print_mac(const u8* mac);
         inline void println_mac(const u8* mac)

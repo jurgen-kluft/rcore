@@ -70,7 +70,7 @@ namespace ncore
 #ifdef TARGET_ESP32
             return psramFound();
 #else
-            return true;
+            return false;
 #endif
         }
 
@@ -79,7 +79,7 @@ namespace ncore
 #ifdef TARGET_ESP32
             return (s32)ESP.getPsramSize();
 #else
-            return 32 * 1024 * 1024;  // Assume 32MB for non-ESP32 platforms
+            return (s32)(0);  // Assume 0 for non-ESP32 platforms
 #endif
         }
         s32 free_psram()
@@ -87,25 +87,32 @@ namespace ncore
 #ifdef TARGET_ESP32
             return (s32)ESP.getFreePsram();
 #else
-            return (s32)(32 * 1024 * 1024);  // Assume 32MB for non-ESP32 platforms
+            return (s32)(0);  // Assume 0 for non-ESP32 platforms
 #endif
         }
 
         byte* alloc_psram(u32 size)
         {
 #ifdef TARGET_ESP32
-            return (byte*)ps_malloc(size);
+            return (byte*)heap_caps_aligned_alloc(16, size, MALLOC_CAP_SPIRAM | MALLOC_CAP_8BIT);
 #else
-            return (byte*)malloc(size);
+            return nullptr;  // PSRAM not available on non-ESP32 platforms
+#endif
+        }
+
+        byte* alloc_psram_aligned(u32 size, u32 alignment)
+        {
+#ifdef TARGET_ESP32
+            return (byte*)heap_caps_aligned_alloc(alignment, size, MALLOC_CAP_SPIRAM | MALLOC_CAP_8BIT);
+#else
+            return nullptr;  // PSRAM not available on non-ESP32 platforms
 #endif
         }
 
         void dealloc_psram(byte* ptr)
         {
 #ifdef TARGET_ARDUINO
-            free(ptr);  // ps_free does not exist, use free instead
-#else
-            free(ptr);
+            heap_caps_aligned_free(ptr);
 #endif
         }
 

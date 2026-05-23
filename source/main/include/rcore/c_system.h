@@ -16,12 +16,13 @@ namespace ncore
         void* malloc(u32 size);  // allocate memory from the heap
         void  free(void* ptr);   // free memory allocated from the heap
 
-        bool  init_psram();              // initialize PSRAM (if available)
-        bool  has_psram();               // check if PSRAM is available
-        s32   total_psram();             // get total PSRAM size in bytes
-        s32   free_psram();              // get free PSRAM size in bytes
-        byte* alloc_psram(u32 size);     // allocate memory from PSRAM
-        void  dealloc_psram(byte* ptr);  // free memory allocated from PSRAM
+        bool  init_psram();                                  // initialize PSRAM (if available)
+        bool  has_psram();                                   // check if PSRAM is available
+        s32   total_psram();                                 // get total PSRAM size in bytes
+        s32   free_psram();                                  // get free PSRAM size in bytes
+        byte* alloc_psram(u32 size);                         // allocate memory from PSRAM
+        byte* alloc_psram_aligned(u32 size, u32 alignment);  // allocate memory from PSRAM
+        void  dealloc_psram(byte* ptr);                      // free memory allocated from PSRAM
 
     }  // namespace nsystem
 }  // namespace ncore

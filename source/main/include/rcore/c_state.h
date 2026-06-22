@@ -12,7 +12,6 @@ namespace ncore
     struct state_wifi_t;
     struct state_tcp_t;
     struct state_udp_t;
-    struct state_node_t;
 
     struct state_t
     {
@@ -37,7 +36,6 @@ namespace ncore
             WiFi                = nullptr;
             Tcp                 = nullptr;
             Udp                 = nullptr;
-            Node                = nullptr;
         }
 
         const char*   WiFiSSID;
@@ -51,7 +49,6 @@ namespace ncore
         state_wifi_t* WiFi;
         state_tcp_t*  Tcp;
         state_udp_t*  Udp;
-        state_node_t* Node;
     };
 
 }  // namespace ncore

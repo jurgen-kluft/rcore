@@ -111,7 +111,7 @@ namespace ncore
 
         void dealloc_psram(byte* ptr)
         {
-#ifdef TARGET_ARDUINO
+#ifdef TARGET_ESP32
             heap_caps_aligned_free(ptr);
 #endif
         }

@@ -33,7 +33,7 @@ namespace ncore
             task->task_fn     = task_fn;
         }
 
-        void tick_periodic_task(periodic_task_t* task, u32 now_ms);
+        void tick_periodic_task(periodic_task_t* task, u64 now_ms);
 
     }  // namespace ntimer
 }  // namespace ncore

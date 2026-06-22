@@ -3,7 +3,6 @@
 #include "rcore/c_eeprom.h"
 #include "rcore/c_log.h"
 #include "rcore/c_serial.h"
-#include "rcore/c_task.h"
 #include "rcore/c_timer.h"
 #include "rcore/c_app.h"
 #include "rcore/c_deepsleep.h"
@@ -21,11 +20,11 @@ void setup()
 {
     ncore::gState.reset();
 
-    ncore::gState.WiFiSSID      = ncore::WIFI_SSID();
-    ncore::gState.WiFiPassword  = ncore::WIFI_PASSWORD();
-    ncore::gState.ServerIP      = ncore::SERVER_IP();
-    ncore::gState.ServerTcpPort = ncore::SERVER_TCPPORT();
-    ncore::gState.ServerUdpPort = ncore::SERVER_UDPPORT();
+    ncore::gState.WiFiSSID            = ncore::WIFI_SSID();
+    ncore::gState.WiFiPassword        = ncore::WIFI_PASSWORD();
+    ncore::gState.SensorServerIP      = ncore::SENSOR_SERVER_IP();
+    ncore::gState.SensorServerTcpPort = ncore::SENSOR_SERVER_TCPPORT();
+    ncore::gState.SensorServerUdpPort = ncore::SENSOR_SERVER_UDPPORT();
     ncore::napp::wakeup(&ncore::gState, ncore::nwakeup::reason());
 
 #    ifdef TARGET_ESP8266

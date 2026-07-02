@@ -46,6 +46,16 @@ namespace ncore
 #endif
         }
 
+        void* calloc(u32 size)
+        {
+            void* ptr = malloc(size);
+            if (ptr)
+            {
+                g_memclr(ptr, size);
+            }
+            return ptr;
+        }
+
         void free(void* ptr)
         {
 #ifdef TARGET_ARDUINO

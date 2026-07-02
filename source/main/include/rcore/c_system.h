@@ -14,7 +14,31 @@ namespace ncore
         void get_unique_id(str_t& str);  // get a unique ID for this device (e.g. chip ID or MAC address)
 
         void* malloc(u32 size);  // allocate memory from the heap
+        void* calloc(u32 size);  // allocate memory from the heap and initialize it to zero
         void  free(void* ptr);   // free memory allocated from the heap
+
+        template <typename T>
+        T* allocate(u32 count = 1)
+        { return static_cast<T*>(malloc(sizeof(T) * count)); }
+
+        template <typename T>
+        T* callocate(u32 count = 1)
+        { return static_cast<T*>(calloc(sizeof(T) * count)); }
+
+        template <typename T>
+        void deallocate(T* ptr)
+        { free(static_cast<void*>(ptr)); }
+
+        template <typename T>
+        T* construct()
+        {
+            T* ptr = allocate<T>();
+            if (ptr)
+            {
+                return new (ptr) T();
+            }
+            return ptr;
+        }
 
         s32 free_heap();  // get free heap size in bytes
 

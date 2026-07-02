@@ -31,6 +31,19 @@ namespace ncore
         void println(const char* msg);
         void println();
 
+        void log_fatal(const char* tag, const char* msg);
+        void log_fatalf(const char* tag, const char* msg, va_list_t valist);
+        void log_error(const char* tag, const char* msg);
+        void log_errorf(const char* tag, const char* msg, va_list_t valist);
+        void log_warn(const char* tag, const char* msg);
+        void log_warnf(const char* tag, const char* msg, va_list_t valist);
+        void log_info(const char* tag, const char* msg);
+        void log_infof(const char* tag, const char* msg, va_list_t valist);
+        void log_debug(const char* tag, const char* msg);
+        void log_debugf(const char* tag, const char* msg, va_list_t valist);
+        void log_trace(const char* tag, const char* msg);
+        void log_tracef(const char* tag, const char* msg, va_list_t valist);
+
         template <typename... Args>
         inline void printv(const char* format, Args&&... _args)
         {
@@ -50,30 +63,24 @@ namespace ncore
             println();
         }
 
-        void printf_(const char* format, va_t* args, i32 argc);
+        void __printf(const char* format, const va_t* args, i32 argc);
+        
         template <typename... Args>
         inline void printf(const char* format, Args&&... _args)
         {
             const va_t argv[] = {_args...};
             const i32  argc   = sizeof(argv) / sizeof(argv[0]);
-            printf_(format, (va_t*)argv, argc);
+            __printf(format, argv, argc);
         }
+        
         template <typename... Args>
         inline void printfln(const char* format, Args&&... _args)
         {
             const va_t argv[] = {_args...};
             const i32  argc   = sizeof(argv) / sizeof(argv[0]);
-            printf_(format, (va_t*)argv, argc);
+            __printf(format, argv, argc);
             println();
         }
-
-        void fatal(const char* msg);
-        void error(const char* msg);
-        void warn(const char* msg);
-        void info(const char* msg);
-        void debug(const char* msg);
-        void trace(const char* msg);
-        void flush();
 
         // IP
         void print_ip(const u8* ip);

@@ -13,7 +13,6 @@ namespace ncore
     namespace napp
     {
         void wakeup(state_t* state, nwakeup::reason_t reason);
-        void presetup(state_t* state);
         void setup(state_t* state);
         void tick(state_t* state);
     }  // namespace napp

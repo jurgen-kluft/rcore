@@ -1,5 +1,5 @@
-#ifndef __ARDUINO_CORE_STATE_H__
-#define __ARDUINO_CORE_STATE_H__
+#ifndef __RCORE_STATE_H__
+#define __RCORE_STATE_H__
 #include "rcore/c_target.h"
 #ifdef USE_PRAGMA_ONCE
 #    pragma once
@@ -53,4 +53,4 @@ namespace ncore
 
 }  // namespace ncore
 
-#endif  // __ARDUINO_CORE_STATE_H__
+#endif  // __RCORE_STATE_H__

@@ -709,6 +709,7 @@ namespace ncore
             right--;
         }
         dest.m_ascii[dest.m_end] = '\0';
+        return;
     }
 
     void to_str(str_t& dest, s32 value, s8 base)

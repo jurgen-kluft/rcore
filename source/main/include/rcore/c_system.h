@@ -16,6 +16,8 @@ namespace ncore
         void* malloc(u32 size);  // allocate memory from the heap
         void  free(void* ptr);   // free memory allocated from the heap
 
+        s32 free_heap();  // get free heap size in bytes
+
         bool  init_psram();                                  // initialize PSRAM (if available)
         bool  has_psram();                                   // check if PSRAM is available
         s32   total_psram();                                 // get total PSRAM size in bytes

@@ -56,6 +56,16 @@ namespace ncore
 #endif
         }
 
+        s32 free_heap()
+        {
+#ifdef TARGET_ARDUINO
+            return (s32)ESP.getFreeHeap();
+#else
+            // standard C++ free heap size
+            return (s32)(0);  // Placeholder for non-ESP32 platforms
+#endif
+        }
+
         bool init_psram()
         {
 #ifdef TARGET_ESP32

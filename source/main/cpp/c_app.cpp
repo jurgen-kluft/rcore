@@ -33,27 +33,39 @@ void setup()
     ncore::nserial::begin(ncore::nbaud::Rate115200);  // Initialize serial communication at 115200 baud
 #    endif
 
-#    ifndef TARGET_ESP8266
-    if (psramInit())
+    ncore::nlog::log_info("setup", "started...");
+
+#    ifdef TARGET_ESP32
+    if (ncore::nsystem::has_psram())
     {
-        ncore::gState.Flags |= ncore::state_t::FLAG_PSRAM;
-        const ncore::u32 psram_size = ESP.getPsramSize();
-        const ncore::u32 free_psram = ESP.getFreePsram();
-        ncore::nlog::printf("PSRAM Size: %u Kbytes with %u Kbytes free.\n", ncore::va_t(psram_size >> 10), ncore::va_t(free_psram >> 10));
+        ncore::nlog::log_info("setup", "PSRAM available.");
+        if (ncore::nsystem::init_psram())
+        {
+            ncore::nlog::log_info("setup", "PSRAM initialized successfully.");
+
+            ncore::gState.Flags |= ncore::state_t::FLAG_PSRAM;
+            const ncore::u32 psram_size = ncore::nsystem::total_psram();
+            const ncore::u32 free_psram = ncore::nsystem::free_psram();
+            ncore::nlog::log_infof("setup", "PSRAM Size: %u Kbytes with %u Kbytes free.", ncore::va_list_t(ncore::va_t(psram_size >> 10), ncore::va_t(free_psram >> 10)));
+        }
+        else
+        {
+            ncore::nlog::log_info("setup", "PSRAM initialization failed.");
+        }
     }
     else
     {
-        ncore::nlog::println("PSRAM initialization failed.");
+        ncore::nlog::log_info("setup", "PSRAM not available.");
     }
 #    endif
 
-    const ncore::u32 free_memory = ESP.getFreeHeap();
-    ncore::nlog::printf("Free heap memory: %u Kbytes\n", ncore::va_t(free_memory >> 10));
+    const ncore::u32 free_memory = ncore::nsystem::free_heap();
+    ncore::nlog::log_infof("setup", "Free heap memory: %u Kbytes", ncore::va_list_t(ncore::va_t(free_memory >> 10)));
 
     ncore::gState.TimeMs = ncore::ntimer::millis();
     ncore::napp::setup(&ncore::gState);
 
-    ncore::nlog::println("Setup done...");
+    ncore::nlog::log_info("setup", "done...");
 }
 
 void loop()

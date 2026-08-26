@@ -38,7 +38,6 @@ func GetPackage() *denv.Package {
 
 	// esp32 core library
 	esp32corelib := denv.SetupCppLibProjectForArduinoEsp32(mainpkg, name+"-esp32")
-	esp32corelib.AddDependencies(ccorepkg.GetMainLib())
 	esp32corelib.AddExternalInclude("{ESP32_SDK}", "cores/esp32", "")
 	esp32corelib.AddExternalInclude("{ESP32_SDK}", "libraries/Wire", "src")
 	esp32corelib.AddExternalInclude("{ESP32_SDK}", "libraries/SPI", "src")
@@ -54,7 +53,6 @@ func GetPackage() *denv.Package {
 
 	// esp8266 core library
 	esp8266corelib := denv.SetupCppLibProjectForArduinoEsp8266(mainpkg, name+"-esp8266")
-	esp8266corelib.AddDependencies(ccorepkg.GetMainLib())
 	esp8266corelib.AddExternalInclude("{ESP8266_SDK}", "cores/esp8266", "")
 	esp8266corelib.AddExternalInclude("{ESP8266_SDK}", "libraries/Wire", "")
 	esp8266corelib.AddExternalInclude("{ESP8266_SDK}", "libraries/EEPROM", "")
@@ -66,6 +64,7 @@ func GetPackage() *denv.Package {
 	mainlib := denv.SetupCppLibProject(mainpkg, name)
 	mainlib.AddDependency(esp32corelib)
 	mainlib.AddDependency(esp8266corelib)
+	mainlib.AddDependencies(ccorepkg.GetMainLib())
 
 	// test library
 	testlib := denv.SetupCppTestLibProject(mainpkg, name)
@@ -73,7 +72,7 @@ func GetPackage() *denv.Package {
 
 	// unittest project
 	maintest := denv.SetupCppTestProject(mainpkg, name)
-	maintest.AddDependencies(cunittestpkg.GetMainLib())
+	maintest.AddDependencies(cunittestpkg.GetTestLib())
 	maintest.AddDependency(testlib)
 
 	mainpkg.AddMainLib(mainlib)

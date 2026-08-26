@@ -21,7 +21,7 @@ namespace ncore
             {
                 str.m_ascii[str.m_end] = 0;
                 str.m_ascii[str.m_eos] = 0;
-                log_i("[%s] %s", "LOG", str.m_ascii);
+                LOG_INFO("[%s] %s", "LOG", str.m_ascii);
                 str.m_ascii[0] = 0;
                 str.m_end      = 0;
             }
@@ -31,7 +31,7 @@ namespace ncore
         {
             if (is_level_active(nlevel::Fatal) && msg != nullptr)
             {
-                log_e("[%s] %s", tag, msg);
+                LOG_ERROR("[%s] %s", tag, msg);
             }
         }
 
@@ -49,7 +49,7 @@ namespace ncore
                     LOG_ERROR("LOG", "Error formatting string");
                     return;
                 }
-                log_e("[%s] %s", tag, str);
+                LOG_ERROR("[%s] %s", tag, str);
             }
             return;
         }
@@ -58,7 +58,7 @@ namespace ncore
         {
             if (is_level_active(nlevel::Error) && msg != nullptr)
             {
-                log_e("[%s] %s", tag, msg);
+                LOG_ERROR("[%s] %s", tag, msg);
             }
         }
 
@@ -77,7 +77,7 @@ namespace ncore
                     return;
                 }
 
-                log_e("[%s] %s", tag, str);
+                LOG_ERROR("[%s] %s", tag, str);
             }
             return;
         }
@@ -86,7 +86,7 @@ namespace ncore
         {
             if (is_level_active(nlevel::Warn) && msg != nullptr)
             {
-                log_w("[%s] %s", tag, msg);
+                LOG_WARNING("[%s] %s", tag, msg);
             }
         }
 
@@ -105,7 +105,7 @@ namespace ncore
                     return;
                 }
 
-                log_w("[%s] %s", tag, str);
+                LOG_WARNING("[%s] %s", tag, str);
             }
         }
 
@@ -113,7 +113,7 @@ namespace ncore
         {
             if (is_level_active(nlevel::Info) && msg != nullptr)
             {
-                log_i("[%s] %s", tag, msg);
+                LOG_INFO("[%s] %s", tag, msg);
             }
         }
 
@@ -132,7 +132,7 @@ namespace ncore
                     return;
                 }
 
-                log_i("[%s] %s", tag, str);
+                LOG_INFO("[%s] %s", tag, str);
             }
         }
 
@@ -140,7 +140,7 @@ namespace ncore
         {
             if (is_level_active(nlevel::Debug) && msg != nullptr)
             {
-                log_d("[%s] %s", tag, msg);
+                LOG_DEBUG("[%s] %s", tag, msg);
             }
         }
 
@@ -159,7 +159,7 @@ namespace ncore
                     return;
                 }
 
-                log_d("[%s] %s", tag, str);
+                LOG_DEBUG("[%s] %s", tag, str);
             }
         }
 
@@ -167,7 +167,7 @@ namespace ncore
         {
             if (is_level_active(nlevel::Trace) && msg != nullptr)
             {
-                log_v("[%s] %s", tag, msg);
+                LOG_INFO("[%s] %s", tag, msg);
             }
         }
 
@@ -186,23 +186,23 @@ namespace ncore
                     return;
                 }
 
-                log_v("[%s] %s", tag, str);
+                LOG_INFO("[%s] %s", tag, str);
             }
         }
 
         void print(const char* msg)
         {
             if (msg != nullptr)
-                log_i("[%s] %s", "LOG", msg);
+                LOG_INFO("[%s] %s", "LOG", msg);
         }
 
         void println(const char* msg)
         {
             if (msg != nullptr)
-                log_i("[%s] %s", "LOG", msg);
+                LOG_INFO("[%s] %s", "LOG", msg);
         }
 
-        void println() { log_i("[%s] %s", "LOG", ""); }
+        void println() { LOG_INFO("[%s] %s", "LOG", ""); }
 
         void print_ip(const u8* ip)
         {
@@ -250,10 +250,10 @@ namespace ncore
             if (len < 0)
             {
                 //Serial.println("[LOG] Error formatting string");
-                log_e("[%s] %s", "LOG", "Error formatting string");
+                LOG_ERROR("[%s] %s", "LOG", "Error formatting string");
                 return;
             }
-            log_i("[%s] %s", "LOG", str);
+            LOG_INFO("[%s] %s", "LOG", str);
             return;
         }
 

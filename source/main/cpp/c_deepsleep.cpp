@@ -72,5 +72,15 @@ namespace ncore
             // For non-ESP32 platforms, we can just simulate deep sleep by halting execution
 #endif
         }
+
+        void sleep_for(u8 hours, u8 minutes, u8 seconds)  // start deep sleep with a timer wakeup
+        {
+#ifdef TARGET_ESP32
+            u64 total_micro_seconds = (((u64)hours * 60ULL * 60ULL) + ((u64)minutes * 60ULL) + ((u64)seconds)) * 1000000;
+            esp_sleep_enable_timer_wakeup(total_micro_seconds);
+            esp_deep_sleep_start();
+#endif
+        }
+
     }  // namespace nwakeup
 }  // namespace ncore

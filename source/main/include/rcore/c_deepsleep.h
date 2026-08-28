@@ -29,6 +29,8 @@ namespace ncore
 
         void deepsleep();             // start deep sleep
         void deepsleep(u32 seconds);  // start deep sleep with a timer wakeup
+
+        void sleep_for(u8 hours, u8 minutes, u8 seconds);  // start deep sleep with a timer wakeup
     }  // namespace nwakeup
 }  // namespace ncore
 

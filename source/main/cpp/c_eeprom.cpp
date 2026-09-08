@@ -11,40 +11,34 @@ namespace ncore
 {
     namespace neeprom
     {
+        // CRC32 implementation based on the FNV-1a hash algorithm, which 
+        // is simple and efficient for small data sizes.
         u32 crc32(const byte* data, s32 length)
         {
-            int i, j;
-            u32 byte, crc, mask;
-
-            i   = 0;
-            crc = 0xFFFFFFFF;
-            while (i < length)
+            u32 hash = 2166136261U;  // FNV offset basis
+            for (s32 i = 0; i < length; i++)
             {
-                byte = data[i];  // Get next byte.
-                crc  = crc ^ byte;
-                for (j = 7; j >= 0; j--)
-                {  // Do eight times.
-                    mask = -(crc & 1);
-                    crc  = (crc >> 1) ^ (0xEDB88320 & mask);
-                }
-                i = i + 1;
+                hash ^= data[i];    // XOR the byte first (the "1a" variation)
+                hash *= 16777619U;  // Multiply by the FNV prime
             }
-            return ~crc;
+            return hash;
         }
 
         void save(byte const* data, s32 size)
         {
-            EEPROM.begin(512);
+            EEPROM.begin(size);
             for (s32 i = 0; i < size; i++)
                 EEPROM.write(i, data[i]);
             EEPROM.commit();
+            EEPROM.end();
         }
 
         bool load(byte* data, s32 size)
         {
-            EEPROM.begin(512);
+            EEPROM.begin(size);
             for (s32 i = 0; i < size; i++)
                 data[i] = EEPROM.read(i);
+            EEPROM.end();
             return true;
         }
 
@@ -57,7 +51,7 @@ namespace ncore
 {
     namespace neeprom
     {
-        u32 crc32(const byte* data, s32 length) { return 0; }
+        u32  crc32(const byte* data, s32 length) { return 0; }
         bool load(byte* data, s32 size) { return false; }
         void save(byte const* data, s32 size) {}
 

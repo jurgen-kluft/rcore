@@ -9,7 +9,7 @@ namespace ncore
 {
     namespace neeprom
     {
-        u32 crc32(const byte* data, s32 length);
+        u32  crc32(const byte* data, s32 length);
         bool load(byte* data, s32 size);
         void save(byte const* data, s32 size);
     }  // namespace neeprom

@@ -13,20 +13,28 @@ Also you do have to have `git`, and `go` installed on your system.
 On my machine the Esp32 SDK is located in `~/sdk/Arduino/esp32` but you can place it anywhere you like. You do have to make
 sure that you have a environment variable named `ESP32_SDK` that points to the location of the SDK. 
 
+- assume Arduino SDK version = 3.3.0
+- assume YourLocation = $HOME/sdk/arduino/esp32_3.3.0
+
 - `git clone https://github.com/espressif/arduino-esp32.git YourLocation`
 - `cd YourLocation`
 - `git submodule update --init --recursive`
 - `cd esp32/tools`
 - `python get.py`
+- On Mac symlink the ESP32 SDK `ln -s $HOME/sdk/arduino/esp32_3.3.0 $HOME/sdk/arduino/esp32`
 
 On my machine the Esp8266 SDK is located in `~/sdk/Arduino/esp8266` but you can place it anywhere you like. You do have to make
 sure that you have a environment variable named `ESP8266_SDK` that points to the location of the SDK. 
+
+- assume Arduino SDK for ESP8266 version = 3.1.2
+- assume YourLocation = $HOME/sdk/arduino/esp8266_3.1.2
 
 - `git clone https://github.com/esp8266/Arduino.git YourLocation`
 - `cd YourLocation`
 - `git submodule update --init --recursive`
 - `cd tools`
 - `python get.py`
+- On Mac symlink the ESP8266 SDK `ln -s $HOME/sdk/arduino/esp8266_3.1.2 $HOME/sdk/arduino/esp8266`
 
 # ESP32 SDK Version
 

@@ -40,10 +40,10 @@ namespace ncore
 
         void tick_periodic_task(periodic_task_t* task, u64 now_ms)
         {
-            if ((now_ms - task->last_run_ms) >= task->interval_ms)
+            if (due_periodic_task(task, now_ms))
             {
-                task->last_run_ms = now_ms;
-                task->task_fn(task->m_user);
+                task->m_task_fn(task->m_user, now_ms);
+                mark_periodic_task(task, now_ms);
             }
         }
 

@@ -43,12 +43,14 @@ func GetPackage() *denv.Package {
 	esp32corelib.AddExternalInclude("{ESP32_SDK}", "libraries/SPI", "src")
 	esp32corelib.AddExternalInclude("{ESP32_SDK}", "libraries/SD", "src")
 	esp32corelib.AddExternalInclude("{ESP32_SDK}", "libraries/FS", "src")
+	esp32corelib.AddExternalInclude("{ESP32_SDK}", "libraries/LittleFS", "src")
 	esp32corelib.AddExternalInclude("{ESP32_SDK}", "libraries/EEPROM", "src")
 	esp32corelib.AddSourceFilesFrom("{ESP32_SDK}", "cores/esp32", "", ".c", ".cpp", ".S")
 	esp32corelib.AddSourceFilesFrom("{ESP32_SDK}", "libraries/Wire", "src", ".c", ".cpp")
 	esp32corelib.AddSourceFilesFrom("{ESP32_SDK}", "libraries/SPI", "src", ".c", ".cpp")
 	esp32corelib.AddSourceFilesFrom("{ESP32_SDK}", "libraries/SD", "src", ".c", ".cpp")
 	esp32corelib.AddSourceFilesFrom("{ESP32_SDK}", "libraries/FS", "src", ".c", ".cpp")
+	esp32corelib.AddSourceFilesFrom("{ESP32_SDK}", "libraries/LittleFS", "src", ".c", ".cpp")
 	esp32corelib.AddSourceFilesFrom("{ESP32_SDK}", "libraries/EEPROM", "src", ".c", ".cpp")
 
 	// esp8266 core library

@@ -9,6 +9,7 @@
 #    endif
 #else
 #    include <unistd.h>
+#    include <string>
 #    include <sys/mman.h>
 #endif
 

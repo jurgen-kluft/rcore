@@ -1,15 +1,17 @@
 #include "rcore/c_little_fs.h"
+#include "rcore/c_log.h"
 
-#include "Arduino.h"
+#ifdef TARGET_ARDUINO
 
-#include "FS.h"
-#include "LittleFS.h"
+#    include "Arduino.h"
+
+#    include "FS.h"
+#    include "LittleFS.h"
 
 namespace ncore
 {
     namespace nlittlefs
     {
-
         struct scan_context_t
         {
             i32       scan_stack_top      = 0;
@@ -58,12 +60,12 @@ namespace ncore
             File        main_root = LittleFS.open(dirname);
             if (!main_root)
             {
-                nlog::log_warning("LITTLE-FS", "Failed to open directory");
+                nlog::log_warn("LITTLE-FS", "Failed to open directory");
                 return;
             }
             if (!main_root.isDirectory())
             {
-                nlog::log_warning("LITTLE-FS", "Not a directory");
+                nlog::log_warn("LITTLE-FS", "Not a directory");
                 return;
             }
 
@@ -93,7 +95,8 @@ namespace ncore
                     }
                     else
                     {
-                        if (handle_cb(&scanner, false, user_ctx)) {
+                        if (handle_cb(&scanner, false, user_ctx))
+                        {
                             // Handle the file as needed
                         }
 
@@ -125,10 +128,7 @@ namespace ncore
 
         void file_save(const char* filename, const u8* source, u32 size)
         {
-            const char* dirname   = "/";
-            File        main_root = LittleFS.open(dirname);
-
-            File file = main_root.open(filename, "w");
+            File file = LittleFS.open(filename, FILE_WRITE);
             if (file)
             {
                 file.write(source, size);
@@ -136,7 +136,72 @@ namespace ncore
             }
         }
 
+        bool file_exists(const char* filename) { return LittleFS.exists(filename); }
+
+        u32 file_size(const char* filename)
+        {
+            File file = LittleFS.open(filename, FILE_READ);
+            if (file)
+            {
+                u32 size = file.size();
+                file.close();
+                return size;
+            }
+            return 0;
+        }
+
+        u32 file_load(const char* filename, u8* destination, u32 capacity, u32& out_file_size)
+        {
+            File file      = LittleFS.open(filename, FILE_READ);
+            u32  read_size = 0;
+            if (file)
+            {
+                out_file_size = file.size();
+                if (out_file_size > capacity)
+                {
+                    read_size = capacity;
+                }
+                else
+                {
+                    read_size = out_file_size;
+                }
+                file.read(destination, read_size);
+                file.close();
+            }
+            return read_size;
+        }
+
+        void file_delete(const char* filename) { LittleFS.remove(filename); }
 
     }  // namespace nlittlefs
 
 }  // namespace ncore
+
+#endif
+
+#ifdef TARGET_MAC
+
+namespace ncore
+{
+    namespace nlittlefs
+    {
+        bool initialize() { return true; }
+
+        void        scanner_scan(void* user_ctx, scanner_handle_fn handle_cb) {}
+        const char* scanner_filename(void* ctx) { return ""; }
+        bool        scanner_fileload(void* ctx, u8* destination, u32 capacity, u32& out_file_size) { return false; }
+
+        void file_save(const char* filename, const u8* source, u32 size) {}
+        bool file_exists(const char* filename) { return false; }
+        u32  file_size(const char* filename) { return 0; }
+        u32  file_load(const char* filename, u8* destination, u32 capacity, u32& out_file_size)
+        {
+            out_file_size = 0;
+            return 0;
+        }
+        void file_delete(const char* filename) {}
+
+    }  // namespace nlittlefs
+}  // namespace ncore
+
+#endif

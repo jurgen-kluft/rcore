@@ -251,75 +251,13 @@ namespace ncore
 {
     namespace nserial
     {
-        void begin(nbaud::Enum baud) { CC_UNUSED(baud); }
-        void print(const char* val) { CC_UNUSED(val); }
-        void print(u8 a, u8 b, u8 c, u8 d, char separator)
+        namespace __internal__
         {
-            CC_UNUSED(a);
-            CC_UNUSED(b);
-            CC_UNUSED(c);
-            CC_UNUSED(d);
-            CC_UNUSED(separator);
-        }
-        void print(u8 a, u8 b, u8 c, u8 d, u8 e, u8 f, char separator)
-        {
-            CC_UNUSED(a);
-            CC_UNUSED(b);
-            CC_UNUSED(c);
-            CC_UNUSED(d);
-            CC_UNUSED(e);
-            CC_UNUSED(f);
-            CC_UNUSED(separator);
-        }
-        void println(const char* val) { CC_UNUSED(val); }
-    }  // namespace nserial
-
-    namespace nserialx
-    {
-        void begin(serial_t x, nbaud::Enum baud, nconfig::Enum config, s8 rxPin, s8 txPin)
-        {
-            CC_UNUSED(x);
-            CC_UNUSED(baud);
-            CC_UNUSED(config);
-            CC_UNUSED(rxPin);
-            CC_UNUSED(txPin);
-        }
-        s32 available(serial_t x)
-        {
-            CC_UNUSED(x);
-            return 0;
-        }
-        void print(serial_t x, const char* val)
-        {
-            CC_UNUSED(x);
-            CC_UNUSED(val);
-        }
-        void println(serial_t x, const char* val)
-        {
-            CC_UNUSED(x);
-            CC_UNUSED(val);
-        }
-        void write(serial_t x, const byte* data, s32 length)
-        {
-            CC_UNUSED(x);
-            CC_UNUSED(data);
-            CC_UNUSED(length);
-        }
-        s32 read_until(serial_t x, char terminator, char* outString, s32 outMaxLength)
-        {
-            CC_UNUSED(x);
-            CC_UNUSED(terminator);
-            CC_UNUSED(outString);
-            CC_UNUSED(outMaxLength);
-            return 0;
-        }
-        s32 read_bytes(serial_t x, byte* outData, s32 outMaxLength)
-        {
-            CC_UNUSED(x);
-            CC_UNUSED(outData);
-            CC_UNUSED(outMaxLength);
-            return 0;
-        }
+            void print(const char* val) {}
+            void print(u8 a, u8 b, u8 c, u8 d, char separator) {}
+            void print(u8 a, u8 b, u8 c, u8 d, u8 e, u8 f, char separator) {}
+            void println(const char* val) {}
+        }  // namespace __internal__
     }  // namespace nserialx
 
 }  // namespace ncore

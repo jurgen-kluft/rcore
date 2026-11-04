@@ -17,6 +17,10 @@ namespace ncore
         bool        scanner_fileload(void* ctx, u8* destination, u32 capacity, u32& out_file_size);
 
         void file_save(const char* filename, const u8* source, u32 size);
+        bool file_exists(const char* filename);
+        u32 file_size(const char* filename);
+        u32 file_load(const char* filename, u8* destination, u32 capacity, u32& out_file_size);
+        void file_delete(const char* filename);
 
     }  // namespace nlittlefs
 }  // namespace ncore

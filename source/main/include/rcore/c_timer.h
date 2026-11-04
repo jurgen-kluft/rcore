@@ -9,6 +9,18 @@ namespace ncore
 {
     namespace ntimer
     {
+        typedef u64 (*clock_now_fn)(void* context);
+
+        struct clock_ops_t
+        {
+            void*        m_context;
+            clock_now_fn m_millis;
+            clock_now_fn m_micros;
+        };
+
+        void default_clock_ops();
+        void set_clock_ops(void* context, clock_now_fn millis, clock_now_fn micros);
+
         u64 millis();
         u64 micros();
 

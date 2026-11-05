@@ -20,11 +20,6 @@ void setup()
 {
     ncore::gState.reset();
 
-    ncore::gState.WiFiSSID            = ncore::WIFI_SSID();
-    ncore::gState.WiFiPassword        = ncore::WIFI_PASSWORD();
-    ncore::gState.SensorServerIP      = ncore::SENSOR_SERVER_IP();
-    ncore::gState.SensorServerTcpPort = ncore::SENSOR_SERVER_TCPPORT();
-    ncore::gState.SensorServerUdpPort = ncore::SENSOR_SERVER_UDPPORT();
     ncore::napp::wakeup(&ncore::gState, ncore::nwakeup::reason());
 
 #    ifdef TARGET_ESP8266

@@ -22,10 +22,14 @@ sure that you have a environment variable named `ESP32_SDK` that points to the l
 - `cd tools`
 - On Mac:
   - Run `python get.py`
-  - Symlink the ESP32 SDK `ln -s $HOME/sdk/arduino/esp32_3.3.0 $HOME/sdk/arduino/esp32`
+  - Symlink the ESP32 SDK 
+    - `ln -s $HOME/sdk/arduino/esp32_3.3.0 $HOME/sdk/arduino/esp32`
 - On Windows:
   - Run `get.exe`
-  - Symlink the ESP32 SDK `mklink /J "sdk\Arduino\esp32" "sdk\Arduino\esp32_3.3.0"`
+  - `cd ..\..`
+  - Symlink the ESP32 SDK 
+    - `mklink /J "esp32" "esp32_3.3.0"`
+    - `New-Item -ItemType Junction -Path "esp32" -Target "esp32_3.3.0"`
 
 On my machine the Esp8266 SDK is located in `~/sdk/Arduino/esp8266` but you can place it anywhere you like. You do have to make
 sure that you have a environment variable named `ESP8266_SDK` that points to the location of the SDK. 
@@ -39,10 +43,15 @@ sure that you have a environment variable named `ESP8266_SDK` that points to the
 - `cd tools`
 - On Mac:
   - Run `python get.py`
-  - Symlink the ESP8266 SDK `ln -s $HOME/sdk/arduino/esp8266_3.1.2 $HOME/sdk/arduino/esp8266`
+  - Symlink the ESP8266 SDK 
+    - `ln -s $HOME/sdk/arduino/esp8266_3.1.2 $HOME/sdk/arduino/esp8266`
 - On Windows:
-  - Run `get.exe`
-  - Symlink the ESP8266 SDK `mklink /J "sdk\Arduino\esp8266" "sdk\Arduino\esp8266_3.1.2"`
+  - Run `python.exe get.py`
+  - `cd ..\..`
+  - Symlink the ESP8266 SDK 
+    - `mklink /J "esp8266" "esp8266_3.1.2"` or
+    - `New-Item -ItemType Junction -Path "esp8266" -Target "esp8266_3.1.2"`
+
 
 # ESP32 SDK Version
 
